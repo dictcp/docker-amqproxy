@@ -1,0 +1,20 @@
+#
+# demo use
+#
+version: '2'
+services:
+  amqproxy:
+    build:
+      context: .
+    expose:
+      - "5672"
+    ports:
+      - "5673:5673"
+    command: amqproxy -l 0.0.0.0 -p 5673 amqp://rabbitmq
+  rabbitmq:
+    image: rabbitmq:3.7-management
+    expose:
+      - "5672"
+    ports:
+      - "8080:15672"
+
